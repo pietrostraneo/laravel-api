@@ -9,6 +9,7 @@ use App\Models\Project;
 use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
@@ -51,6 +52,10 @@ class ProjectController extends Controller
             $path = Storage::disk('public')->put('project_previews', $addproject['preview']);
             $addproject['preview'] = $path;
         }
+
+        // creo lo slug del progetto
+        $slug = Str::slug($addproject['name'], '-');
+        $addproject['slug'] = $slug;
 
         $project->fill($addproject);
         $project->save();
@@ -106,6 +111,9 @@ class ProjectController extends Controller
             $path = Storage::disk('public')->put('project_previews', $editproject['preview']);
             $editproject['preview'] = $path;
         }
+
+        $slug = Str::slug($editproject['name'], '-');
+        $editproject['slug'] = $slug;
 
         $project->fill($editproject);
         $project->update();

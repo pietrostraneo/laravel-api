@@ -5,7 +5,8 @@
         <div class="row justify-content-center mt-5">
             <div class="col-12 col-md-6">
 
-                <form action="{{ route('admin.projects.update', ['project' => $project->id]) }}" method="post">
+                <form action="{{ route('admin.projects.update', ['project' => $project->id]) }}" method="post"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -30,6 +31,10 @@
                         <input type="text" name="name" id="name"
                             class="form-control @error('name') is-invalid @enderror" value="{{ $project['name'] }}"
                             required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="preview" class=" form-label ">Preview image:</label>
+                        <input type="file" name="preview" id="preview" class="form-control">
                     </div>
                     <div class="form-group mt-3">
                         <label for="description" class=" form-label ">Description:</label>

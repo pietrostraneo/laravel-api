@@ -22,7 +22,7 @@
                         @foreach ($projects as $project)
                             <tr>
                                 <td><a
-                                        href="{{ route('admin.projects.show', ['project' => $project['id']]) }}">{{ $project['name'] }}</a>
+                                        href="{{ route('admin.projects.show', ['project' => $project->slug]) }}">{{ $project['name'] }}</a>
                                 </td>
                                 <td>{{ $project->type_id != null ? $project->type->name : 'Senza Categoria' }}</td>
                                 <td>{{ $project['assignment_date'] }}</td>
